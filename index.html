@@ -53,7 +53,7 @@
     box-shadow: 0 4px 0 var(--ink);
   }
   .logo-img {
-    height: 48px;
+    height: 56px;
     width: auto;
   }
   .nav-links {
@@ -179,9 +179,12 @@
   /* HERO IMAGE STACK — featuring the real product packs */
   .hero-images {
     position: relative;
-    aspect-ratio: 1;
+    width: 100%;
     max-width: 560px;
+    aspect-ratio: 1;
     margin-left: auto;
+    /* Fallback height in case aspect-ratio is unsupported or width collapses */
+    min-height: 480px;
   }
   .hero-pack {
     position: absolute;
@@ -191,8 +194,9 @@
     background: var(--paper);
     overflow: hidden;
     transition: transform .3s ease;
+    aspect-ratio: 1;
   }
-  .hero-pack img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-pack img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .hero-pack:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 10; }
 
   .hero-pack.p1 { width: 58%; top: 0; left: 0; transform: rotate(-6deg); z-index: 3; }
