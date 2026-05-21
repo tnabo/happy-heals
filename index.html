@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Heals — The coolest bandaids ever!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Bowlby+One&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #7ecbff;
+    --sky-deep: #4eb3ff;
+    --bubble: #ff6fc8;
+    --bubble-deep: #ff3aa8;
+    --sunshine: #ffd83d;
+    --mint: #5ee0c1;
+    --grape: #b88aff;
+    --tangerine: #ff924a;
+    --cream: #fff8e7;
+    --paper: #ffffff;
+    --ink: #2d1b4e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    background: var(--sky);
+    color: var(--ink);
+    overflow-x: hidden;
+    line-height: 1.4;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.25) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.2) 0%, transparent 40%);
+  }
+
+  img { display: block; max-width: 100%; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--paper);
+    border-bottom: 4px solid var(--ink);
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 0 var(--ink);
+  }
+  .logo-img {
+    height: 48px;
+    width: auto;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .nav-links a { color: var(--ink); text-decoration: none; }
+  .nav-links a:hover { color: var(--bubble); }
+  .nav-cta {
+    background: var(--sunshine);
+    color: var(--ink);
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: all .15s;
+  }
+  .nav-cta:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+  .nav-cta:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    nav { padding: 12px 18px; }
+    .logo-img { height: 38px; }
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding: 60px 28px 140px;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: visible;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--sunshine);
+    border: 3px solid var(--ink);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 var(--ink);
+    margin-bottom: 28px;
+    transform: rotate(-2deg);
+  }
+  .eyebrow .spin {
+    display: inline-block;
+    animation: spin 4s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hero h1 {
+    font-family: 'Bowlby One', cursive;
+    font-size: clamp(56px, 9vw, 130px);
+    line-height: 0.9;
+    color: var(--paper);
+    -webkit-text-stroke: 4px var(--ink);
+    text-shadow: 8px 8px 0 var(--ink);
+    margin-bottom: 32px;
+    letter-spacing: 1px;
+  }
+  .hero h1 .word1 { color: var(--bubble); display: inline-block; transform: rotate(-3deg); }
+  .hero h1 .word2 { color: var(--sunshine); display: inline-block; transform: rotate(2deg); }
+  .hero h1 .word3 { color: var(--mint); display: inline-block; transform: rotate(-2deg); }
+
+  .hero p.lede {
+    font-size: 22px;
+    font-weight: 500;
+    max-width: 480px;
+    margin-bottom: 36px;
+    color: var(--ink);
+    background: var(--paper);
+    padding: 18px 22px;
+    border-radius: 24px;
+    border: 3px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    transform: rotate(-1deg);
+  }
+
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--bubble);
+    color: var(--paper);
+    padding: 20px 36px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+    border: 4px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: all .15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+  }
+  .btn-primary:hover { transform: translate(-3px,-3px) rotate(-2deg); box-shadow: 9px 9px 0 var(--ink); }
+  .btn-primary:active { transform: translate(3px,3px); box-shadow: 2px 2px 0 var(--ink); }
+  .btn-primary .arrow { display: inline-block; animation: bounce-x 1.5s ease-in-out infinite; }
+  @keyframes bounce-x {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(6px); }
+  }
+
+  /* HERO IMAGE STACK — featuring the real product packs */
+  .hero-images {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 560px;
+    margin-left: auto;
+  }
+  .hero-pack {
+    position: absolute;
+    border-radius: 20px;
+    border: 4px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    background: var(--paper);
+    overflow: hidden;
+    transition: transform .3s ease;
+  }
+  .hero-pack img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-pack:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 10; }
+
+  .hero-pack.p1 { width: 58%; top: 0; left: 0; transform: rotate(-6deg); z-index: 3; }
+  .hero-pack.p2 { width: 52%; top: 8%; right: 0; transform: rotate(8deg); z-index: 2; }
+  .hero-pack.p3 { width: 50%; bottom: 0; left: 8%; transform: rotate(-3deg); z-index: 4; }
+  .hero-pack.p4 { width: 46%; bottom: 6%; right: 4%; transform: rotate(10deg); z-index: 1; }
+
+  /* Doodles */
+  .doodle {
+    position: absolute;
+    pointer-events: none;
+    animation: float 3s ease-in-out infinite;
+    font-family: 'Bowlby One', cursive;
+    font-size: 40px;
+    z-index: 1;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-14px) rotate(var(--r, 0deg)); }
+  }
+  .star-yellow { color: var(--sunshine); }
+  .star-pink { color: var(--bubble); }
+  .star-white { color: var(--paper); }
+
+  /* ===== TICKER ===== */
+  .ticker {
+    background: var(--ink);
+    color: var(--sunshine);
+    border-top: 4px solid var(--ink);
+    border-bottom: 4px solid var(--ink);
+    overflow: hidden;
+    padding: 20px 0;
+    white-space: nowrap;
+    transform: rotate(-2deg);
+    margin: -20px -20px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .ticker-track {
+    display: inline-block;
+    animation: scroll 20s linear infinite;
+    font-family: 'Bowlby One', cursive;
+    font-size: 32px;
+    letter-spacing: 1px;
+  }
+  .ticker-track span {
+    padding: 0 28px;
+    display: inline-block;
+  }
+  .ticker-track .dot {
+    color: var(--bubble);
+    padding: 0 14px;
+    font-size: 36px;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===== FEATURES ===== */
+  .features {
+    background: var(--cream);
+    padding: 140px 28px 120px;
+    position: relative;
+    overflow: hidden;
+  }
+  .features-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .section-title {
+    font-family: 'Bowlby One', cursive;
+    font-size: clamp(44px, 7vw, 90px);
+    line-height: 0.95;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--ink);
+    letter-spacing: 1px;
+  }
+  .section-title .pop { 
+    color: var(--bubble); 
+    display: inline-block;
+    transform: rotate(-3deg);
+  }
+  .section-sub {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto 64px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr; } }
+
+  .feature-card {
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    border-radius: 32px;
+    padding: 36px 28px;
+    text-align: center;
+    box-shadow: 8px 8px 0 var(--ink);
+    transition: transform .25s;
+  }
+  .feature-card:nth-child(1) { background: var(--bubble); color: var(--paper); transform: rotate(-2deg); }
+  .feature-card:nth-child(2) { background: var(--mint); transform: rotate(1deg); }
+  .feature-card:nth-child(3) { background: var(--sunshine); transform: rotate(-1deg); }
+
+  .feature-card:hover { transform: translateY(-8px) rotate(0deg) !important; }
+
+  .feature-icon {
+    width: 100px; height: 100px;
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 56px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .feature-card h3 {
+    font-family: 'Bowlby One', cursive;
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+  }
+  .feature-card p {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.45;
+  }
+
+  /* ===== COLLECTION ===== */
+  .collection {
+    background: var(--grape);
+    padding: 130px 28px;
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid var(--ink);
+    border-bottom: 4px solid var(--ink);
+  }
+  .collection-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+  .collection .section-title { color: var(--paper); -webkit-text-stroke: 3px var(--ink); text-shadow: 6px 6px 0 var(--ink); }
+  .collection .section-sub { color: var(--paper); font-weight: 600; }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 900px) { .collection-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+  @media (max-width: 560px) { .collection-grid { grid-template-columns: 1fr; } }
+
+  .product-card {
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    border-radius: 24px;
+    padding: 18px;
+    position: relative;
+    transition: transform .2s;
+    cursor: pointer;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .product-card:nth-child(odd) { transform: rotate(-1.5deg); }
+  .product-card:nth-child(even) { transform: rotate(1.5deg); }
+  .product-card:hover { transform: translateY(-8px) rotate(0deg); box-shadow: 10px 10px 0 var(--ink); }
+
+  .product-art {
+    aspect-ratio: 1;
+    background: var(--bg, var(--cream));
+    border-radius: 18px;
+    border: 4px solid var(--ink);
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
+  }
+  .product-name {
+    font-family: 'Bowlby One', cursive;
+    font-size: 22px;
+    margin-bottom: 8px;
+    text-align: center;
+    line-height: 1.1;
+  }
+  .product-tagline {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--bubble);
+  }
+  .product-meta {
+    display: flex;
+    justify-content: space-around;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--cream);
+    border-radius: 999px;
+    padding: 8px 12px;
+    border: 2px solid var(--ink);
+  }
+  .product-badge {
+    position: absolute;
+    top: -10px; right: -10px;
+    background: var(--sunshine);
+    color: var(--ink);
+    font-family: 'Bowlby One', cursive;
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 3px solid var(--ink);
+    transform: rotate(15deg);
+    box-shadow: 3px 3px 0 var(--ink);
+    z-index: 5;
+  }
+  .product-badge.hot { background: var(--bubble); color: var(--paper); }
+  .product-badge.new { background: var(--mint); }
+
+  /* ===== STORY ===== */
+  .story {
+    background: var(--cream);
+    padding: 140px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .story-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  @media (max-width: 900px) { .story-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+  .story-art {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    border-radius: 36px;
+    box-shadow: 10px 10px 0 var(--ink);
+    overflow: hidden;
+    transform: rotate(-3deg);
+  }
+  .story-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .story-art-badge {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--bubble);
+    color: var(--paper);
+    font-family: 'Bowlby One', cursive;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 3px solid var(--ink);
+    transform: rotate(8deg);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  .story-text h2 {
+    font-family: 'Bowlby One', cursive;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 0.95;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+  }
+  .story-text h2 em {
+    color: var(--bubble);
+    font-style: normal;
+    display: inline-block;
+    transform: rotate(-2deg);
+  }
+  .story-text p {
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .stat-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    padding: 16px 22px;
+    box-shadow: 4px 4px 0 var(--ink);
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+  .stat-box:nth-child(1) { background: var(--mint); }
+  .stat-box:nth-child(2) { background: var(--sunshine); }
+  .stat-box:nth-child(3) { background: var(--sky); }
+  .stat-num {
+    font-family: 'Bowlby One', cursive;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stat-label {
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials {
+    background: var(--sunshine);
+    padding: 120px 28px;
+    overflow: hidden;
+    border-top: 4px solid var(--ink);
+    border-bottom: 4px solid var(--ink);
+  }
+  .testimonials-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 56px;
+  }
+  @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
+
+  .testi {
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: 6px 6px 0 var(--ink);
+    position: relative;
+  }
+  .testi:nth-child(1) { transform: rotate(-2deg); }
+  .testi:nth-child(2) { transform: rotate(1deg) translateY(-20px); background: var(--mint); }
+  .testi:nth-child(3) { transform: rotate(-1deg); background: var(--sky); }
+
+  .stars { 
+    color: var(--bubble); 
+    font-size: 28px; 
+    margin-bottom: 12px; 
+    letter-spacing: 2px;
+    -webkit-text-stroke: 1.5px var(--ink);
+  }
+  .testi blockquote {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 2px dashed rgba(45,27,78,0.3);
+    padding-top: 14px;
+  }
+  .avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--grape);
+    border: 3px solid var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bowlby One', cursive;
+    font-size: 20px;
+    color: var(--paper);
+  }
+  .testi-name { font-weight: 700; font-size: 15px; }
+  .testi-handle { font-weight: 500; font-size: 13px; opacity: 0.7; }
+
+  /* ===== GROWN UP CALLOUT ===== */
+  .grownups {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 80px 28px;
+    text-align: center;
+  }
+  .grownups-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .grownups .small {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    color: var(--sunshine);
+    margin-bottom: 8px;
+  }
+  .grownups h3 {
+    font-family: 'Bowlby One', cursive;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--paper);
+  }
+  .grownups p {
+    font-size: 17px;
+    font-weight: 500;
+    opacity: 0.85;
+    max-width: 560px;
+    margin: 0 auto 24px;
+  }
+  .grown-tags {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .grown-tag {
+    background: transparent;
+    border: 2px solid var(--cream);
+    color: var(--cream);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: var(--sky);
+    padding: 140px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section h2 {
+    font-family: 'Bowlby One', cursive;
+    font-size: clamp(52px, 10vw, 130px);
+    line-height: 0.9;
+    max-width: 1000px;
+    margin: 0 auto 32px;
+    color: var(--paper);
+    -webkit-text-stroke: 4px var(--ink);
+    text-shadow: 8px 8px 0 var(--ink);
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+  }
+  .cta-section h2 .swirl { color: var(--sunshine); display: inline-block; transform: rotate(-3deg); }
+  .cta-section p {
+    font-size: 20px;
+    font-weight: 600;
+    max-width: 540px;
+    margin: 0 auto 40px;
+    position: relative;
+    z-index: 2;
+  }
+  .newsletter {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 4px solid var(--ink);
+    border-radius: 999px;
+    overflow: hidden;
+    background: var(--paper);
+    box-shadow: 8px 8px 0 var(--ink);
+    position: relative;
+    z-index: 2;
+  }
+  .newsletter input {
+    flex: 1;
+    border: none;
+    padding: 18px 24px;
+    font-size: 17px;
+    background: transparent;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    outline: none;
+  }
+  .newsletter button {
+    background: var(--bubble);
+    color: var(--paper);
+    border: none;
+    border-left: 4px solid var(--ink);
+    padding: 0 32px;
+    font-weight: 700;
+    font-size: 17px;
+    cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
+    text-transform: uppercase;
+  }
+  .newsletter button:hover { background: var(--bubble-deep); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 60px 28px 30px;
+  }
+  .footer-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 800px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+
+  .footer-logo {
+    height: 56px;
+    width: auto;
+    margin-bottom: 16px;
+    background: var(--paper);
+    padding: 6px 16px;
+    border-radius: 50px;
+  }
+  .footer-brand p { font-size: 15px; opacity: 0.75; max-width: 280px; line-height: 1.5; }
+  footer h4 {
+    font-family: 'Bowlby One', cursive;
+    font-size: 17px;
+    margin-bottom: 14px;
+    color: var(--sunshine);
+    letter-spacing: 0.5px;
+  }
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 10px; }
+  footer a { color: var(--cream); text-decoration: none; font-size: 15px; font-weight: 500; opacity: 0.85; }
+  footer a:hover { color: var(--bubble); opacity: 1; }
+  .footer-bottom {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 2px dashed rgba(254,246,228,0.2);
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    opacity: 0.7;
+  }
+  @media (max-width: 600px) { .footer-bottom { flex-direction: column; gap: 12px; text-align: center; } }
+
+  /* Reveal animations */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile hero adjustments */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-images { max-width: 100%; aspect-ratio: 1.2/1; }
+    .ticker-track { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#"><img src="images/logo.jpg" alt="Happy Heals" class="logo-img" style="mix-blend-mode: multiply;"></a>
+  <ul class="nav-links">
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#grownups">For Grown-ups</a></li>
+  </ul>
+  <a href="#shop" class="nav-cta">Shop Now! ✨</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="doodle star-yellow" style="top: 60px; left: 42%; --r: -10deg;">★</span>
+  <span class="doodle star-pink" style="top: 300px; left: 3%; --r: 15deg; font-size: 32px;">✦</span>
+  <span class="doodle star-white" style="bottom: 80px; left: 36%; --r: -20deg; font-size: 28px;">★</span>
+
+  <div class="hero-grid">
+    <div class="reveal in">
+      <div class="eyebrow"><span class="spin">✨</span> The Coolest Bandages Ever!</div>
+      <h1>
+        <span class="word1">OW!</span>
+        <span class="word2">OOPS!</span>
+        <span class="word3">OK!</span>
+      </h1>
+      <p class="lede">The coolest, silliest, most fun-shaped bandages on the planet 🌎 Made just for you (yes, YOU).</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn-primary">Pick Your Bandaid <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-images">
+      <div class="hero-pack p1">
+        <img src="images/dino.jpg" alt="Dino Bandages pack">
+      </div>
+      <div class="hero-pack p2">
+        <img src="images/outer-space.jpg" alt="Outer Space Bandages pack">
+      </div>
+      <div class="hero-pack p3">
+        <img src="images/first-responder.jpg" alt="1st Responder Bandages pack">
+      </div>
+      <div class="hero-pack p4">
+        <img src="images/race-day.jpg" alt="Race Day Bandages pack">
+      </div>
+
+      <span class="doodle star-pink" style="top: -10px; right: -10px; --r: 0deg; font-size: 36px;">✦</span>
+      <span class="doodle star-yellow" style="bottom: -10px; left: -10px; --r: 20deg; font-size: 40px;">★</span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>🩹 OUCHIES = AWESOME</span><span class="dot">★</span>
+    <span>🦖 80+ COOL DESIGNS</span><span class="dot">★</span>
+    <span>🌈 SUPER STICKY</span><span class="dot">★</span>
+    <span>✨ DOCTOR APPROVED</span><span class="dot">★</span>
+    <span>🚀 OUT OF THIS WORLD</span><span class="dot">★</span>
+    <span>🩹 OUCHIES = AWESOME</span><span class="dot">★</span>
+    <span>🦖 80+ COOL DESIGNS</span><span class="dot">★</span>
+    <span>🌈 SUPER STICKY</span><span class="dot">★</span>
+    <span>✨ DOCTOR APPROVED</span><span class="dot">★</span>
+    <span>🚀 OUT OF THIS WORLD</span><span class="dot">★</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <div class="reveal">
+      <h2 class="section-title">Why Kids <span class="pop">LOVE</span> Us!</h2>
+      <p class="section-sub">(Spoiler alert: they're bandages with superpowers.)</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">⚡</div>
+        <h3>SUPER STICKY!</h3>
+        <p>Stays on through pool day, bath time, and that big slide you keep going on. Like, ALL day.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🎨</div>
+        <h3>SO MANY DESIGNS!</h3>
+        <p>Dinosaurs, rockets, race cars, fire trucks — over 80 to choose from. Match your mood!</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">😎</div>
+        <h3>ZERO OUCH!</h3>
+        <p>Gentle on skin and easy to take off (we promise no scary peels). Boo-boos beware!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="collection" id="shop">
+  <div class="collection-inner">
+    <div class="reveal">
+      <h2 class="section-title">Pick Your Pack!</h2>
+      <p class="section-sub">Which adventure are you on today? 🤔</p>
+    </div>
+    <div class="collection-grid">
+      <a href="dino-bandages.html" class="product-card reveal" style="text-decoration: none; color: inherit;">
+        <span class="product-badge new">NEW!</span>
+        <div class="product-art">
+          <img src="images/dino.jpg" alt="Dino Bandages">
+        </div>
+        <div class="product-name">Dino Bandages</div>
+        <div class="product-tagline">~ ROAR! ~</div>
+        <div class="product-meta"><span>50 ct</span><span>$8.99</span></div>
+      </a>
+
+      <div class="product-card reveal">
+        <span class="product-badge hot">HOT!</span>
+        <div class="product-art">
+          <img src="images/outer-space.jpg" alt="Outer Space Bandages">
+        </div>
+        <div class="product-name">Outer Space</div>
+        <div class="product-tagline">~ To infinity! ~</div>
+        <div class="product-meta"><span>24 ct</span><span>$7.99</span></div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-art">
+          <img src="images/race-day.jpg" alt="Race Day Bandages">
+        </div>
+        <div class="product-name">Race Day</div>
+        <div class="product-tagline">~ Vroom vroom! ~</div>
+        <div class="product-meta"><span>24 ct</span><span>$7.99</span></div>
+      </div>
+
+      <div class="product-card reveal">
+        <span class="product-badge">WOW!</span>
+        <div class="product-art">
+          <img src="images/first-responder.jpg" alt="1st Responder Bandages">
+        </div>
+        <div class="product-name">1st Responders</div>
+        <div class="product-tagline">~ Heroes to the rescue! ~</div>
+        <div class="product-meta"><span>50 ct</span><span>$9.99</span></div>
+      </div>
+
+      <div class="product-card reveal">
+        <span class="product-badge new">NEW!</span>
+        <div class="product-art">
+          <img src="images/adventure.jpg" alt="Adventure Bandages">
+        </div>
+        <div class="product-name">Adventure</div>
+        <div class="product-tagline">~ Explore the galaxy! ~</div>
+        <div class="product-meta"><span>24 ct</span><span>$7.99</span></div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-art">
+          <img src="images/little-miracles.jpg" alt="Little Miracles Bandages">
+        </div>
+        <div class="product-name">Little Miracles</div>
+        <div class="product-tagline">~ Joyful designs ~</div>
+        <div class="product-meta"><span>50 ct</span><span>$9.99</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <a href="#" class="btn-primary" style="background: var(--sunshine); color: var(--ink);">See ALL the designs! 🎉</a>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-inner">
+    <div class="story-art reveal">
+      <img src="images/lifestyle-finger.jpg" alt="Happy Heals bandaid on a finger — They Really Hug!">
+      <div class="story-art-badge">They really hug!</div>
+    </div>
+    <div class="story-text reveal">
+      <h2>Bandaids that <em>hug!</em></h2>
+      <p>Our bandaids aren't just adorable — they actually <strong>wrap around</strong> your finger for a hug that holds tight all day long. 🤗</p>
+      <p>From dinosaurs to rocket ships, every design is made to turn a scraped knee or paper cut into the coolest part of your day.</p>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">80+</div>
+          <div class="stat-label">Designs</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">2M</div>
+          <div class="stat-label">Smiles</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">★★★★★</div>
+          <div class="stat-label">Kid rated</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="testimonials-inner">
+    <div class="reveal">
+      <h2 class="section-title">What Kids <span class="pop">Say!</span></h2>
+      <p class="section-sub">Real reviews from real (tiny) humans.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I fell off my bike on PURPOSE so I could wear the dinosaur one. Worth it."</blockquote>
+        <div class="testi-author">
+          <div class="avatar">L</div>
+          <div>
+            <div class="testi-name">Leo, age 7</div>
+            <div class="testi-handle">future paleontologist</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The race car one made my owie feel like a pit stop. Now I'm ready to GO!"</blockquote>
+        <div class="testi-author">
+          <div class="avatar" style="background: var(--bubble);">A</div>
+          <div>
+            <div class="testi-name">Ava, age 5</div>
+            <div class="testi-handle">racing champion</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi reveal">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The astronaut bandaid made my paper cut feel TEN times less owie. Scientific fact."</blockquote>
+        <div class="testi-author">
+          <div class="avatar" style="background: var(--mint); color: var(--ink);">M</div>
+          <div>
+            <div class="testi-name">Mia, age 8</div>
+            <div class="testi-handle">space scientist</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GROWN UPS CALLOUT -->
+<section class="grownups" id="grownups">
+  <div class="grownups-inner">
+    <div class="small">psst... for the grown-ups 👋</div>
+    <h3>The boring (but important) stuff</h3>
+    <p>Latex-free, hypoallergenic, FDA-cleared adhesive. Made with skin-safe materials and packaged in recyclable boxes. We donate a portion of every sale to children's hospitals.</p>
+    <div class="grown-tags">
+      <span class="grown-tag">Latex-Free</span>
+      <span class="grown-tag">Hypoallergenic</span>
+      <span class="grown-tag">FDA Cleared</span>
+      <span class="grown-tag">Pediatrician Approved</span>
+      <span class="grown-tag">Recyclable Packaging</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <span class="doodle star-yellow" style="top: 60px; left: 10%; --r: -15deg; font-size: 48px;">★</span>
+  <span class="doodle star-pink" style="top: 100px; right: 12%; --r: 20deg; font-size: 36px;">✦</span>
+  <span class="doodle star-white" style="bottom: 80px; left: 8%; --r: 10deg; font-size: 40px;">★</span>
+  <span class="doodle star-yellow" style="bottom: 60px; right: 10%; --r: -10deg; font-size: 32px;">✦</span>
+  
+  <div class="reveal">
+    <h2>Join the <span class="swirl">Happy Heals Club!</span></h2>
+    <p>Get a sneak peek at new designs, secret discounts, and FREE bandaids on your birthday 🎂</p>
+    <form class="newsletter" onsubmit="event.preventDefault(); this.querySelector('button').textContent='YAY! ✓';">
+      <input type="email" placeholder="grown-up's email please!" required>
+      <button type="submit">Sign Up!</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="images/logo.jpg" alt="Happy Heals" class="footer-logo">
+      <p>The coolest bandaids on Earth 🌎 Made with love for kids (and the grown-ups who love them).</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">All Designs</a></li>
+        <li><a href="#">New Drops</a></li>
+        <li><a href="#">Best Sellers</a></li>
+        <li><a href="#">Gift Sets</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">For Schools</a></li>
+        <li><a href="#">Wholesale</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">YouTube Kids</a></li>
+        <li><a href="#">Newsletter</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Happy Heals 🩹</div>
+    <div>Made with ♡ for tiny adventurers everywhere</div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Floating hero packs
+  document.querySelectorAll('.hero-pack').forEach((s, i) => {
+    s.style.animation = `float 4s ease-in-out ${i * 0.5}s infinite`;
+  });
+</script>
+</body>
+</html>
