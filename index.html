@@ -176,33 +176,100 @@
     50% { transform: translateX(6px); }
   }
 
-  /* HERO IMAGE STACK — featuring the real product packs */
-  .hero-images {
+  /* HERO SHOWCASE — clean, confident, single feature image */
+  .hero-showcase {
     position: relative;
     width: 100%;
-    max-width: 560px;
-    aspect-ratio: 1;
+    max-width: 600px;
     margin-left: auto;
-    /* Fallback height in case aspect-ratio is unsupported or width collapses */
-    min-height: 480px;
-  }
-  .hero-pack {
-    position: absolute;
-    border-radius: 20px;
-    border: 4px solid var(--ink);
-    box-shadow: 8px 8px 0 var(--ink);
-    background: var(--paper);
-    overflow: hidden;
-    transition: transform .3s ease;
     aspect-ratio: 1;
   }
-  .hero-pack img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hero-pack:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 10; }
+  
+  /* Big circular spotlight behind the product */
+  .hero-spotlight {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sunshine) 0%, transparent 65%);
+    opacity: 0.6;
+    animation: pulse 6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.05); opacity: 0.7; }
+  }
 
-  .hero-pack.p1 { width: 58%; top: 0; left: 0; transform: rotate(-6deg); z-index: 3; }
-  .hero-pack.p2 { width: 52%; top: 8%; right: 0; transform: rotate(8deg); z-index: 2; }
-  .hero-pack.p3 { width: 50%; bottom: 0; left: 8%; transform: rotate(-3deg); z-index: 4; }
-  .hero-pack.p4 { width: 46%; bottom: 6%; right: 4%; transform: rotate(10deg); z-index: 1; }
+  /* Main featured product — front and center */
+  .hero-feature {
+    position: absolute;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-3deg);
+    z-index: 3;
+    transition: transform .4s ease;
+    filter: drop-shadow(12px 12px 0 var(--ink));
+  }
+  .hero-feature img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+  }
+  .hero-feature:hover { transform: translate(-50%, -50%) rotate(0deg) scale(1.03); }
+
+  /* Bestseller badge that orbits the product */
+  .hero-stamp {
+    position: absolute;
+    top: 4%;
+    right: 6%;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: var(--bubble);
+    color: var(--paper);
+    border: 4px solid var(--ink);
+    box-shadow: 5px 5px 0 var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 5;
+    transform: rotate(12deg);
+    font-family: 'Bowlby One', cursive;
+    line-height: 0.95;
+    animation: stamp-bob 3s ease-in-out infinite;
+  }
+  .hero-stamp .stamp-small { font-size: 12px; display: block; margin-bottom: 2px; opacity: 0.9; }
+  .hero-stamp .stamp-big { font-size: 22px; display: block; }
+  @keyframes stamp-bob {
+    0%, 100% { transform: rotate(12deg) translateY(0); }
+    50% { transform: rotate(12deg) translateY(-8px); }
+  }
+
+  /* Small thumbnail peeking from corner — hints at more products */
+  .hero-peek {
+    position: absolute;
+    bottom: 0;
+    left: 4%;
+    width: 28%;
+    border-radius: 14px;
+    border: 4px solid var(--ink);
+    box-shadow: 6px 6px 0 var(--ink);
+    overflow: hidden;
+    transform: rotate(-8deg);
+    z-index: 4;
+    background: var(--paper);
+    transition: transform .3s ease;
+  }
+  .hero-peek img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 1;
+  }
+  .hero-peek:hover { transform: rotate(0deg) scale(1.08); }
 
   /* Doodles */
   .doodle {
@@ -771,7 +838,9 @@
   /* Mobile hero adjustments */
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-    .hero-images { max-width: 100%; aspect-ratio: 1.2/1; }
+    .hero-showcase { max-width: 100%; }
+    .hero-stamp { width: 100px; height: 100px; }
+    .hero-stamp .stamp-big { font-size: 18px; }
     .ticker-track { font-size: 24px; }
   }
 </style>
@@ -810,22 +879,26 @@
       </div>
     </div>
 
-    <div class="hero-images">
-      <div class="hero-pack p1">
-        <img src="images/dino.jpg" alt="Dino Bandages pack">
+    <div class="hero-showcase">
+      <div class="hero-spotlight"></div>
+      
+      <div class="hero-feature">
+        <img src="images/dino.jpg" alt="Happy Heals Dino Bandages — featured product">
       </div>
-      <div class="hero-pack p2">
-        <img src="images/outer-space.jpg" alt="Outer Space Bandages pack">
+      
+      <div class="hero-stamp">
+        <div>
+          <span class="stamp-small">★ NEW ★</span>
+          <span class="stamp-big">JUST<br>HATCHED!</span>
+        </div>
       </div>
-      <div class="hero-pack p3">
-        <img src="images/first-responder.jpg" alt="1st Responder Bandages pack">
-      </div>
-      <div class="hero-pack p4">
-        <img src="images/race-day.jpg" alt="Race Day Bandages pack">
+      
+      <div class="hero-peek">
+        <img src="images/outer-space.jpg" alt="More designs available">
       </div>
 
-      <span class="doodle star-pink" style="top: -10px; right: -10px; --r: 0deg; font-size: 36px;">✦</span>
-      <span class="doodle star-yellow" style="bottom: -10px; left: -10px; --r: 20deg; font-size: 40px;">★</span>
+      <span class="doodle star-pink" style="top: 8%; left: 0; --r: 0deg; font-size: 32px;">✦</span>
+      <span class="doodle star-yellow" style="bottom: 15%; right: -10px; --r: 20deg; font-size: 36px;">★</span>
     </div>
   </div>
 </section>
@@ -1085,10 +1158,6 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // Floating hero packs
-  document.querySelectorAll('.hero-pack').forEach((s, i) => {
-    s.style.animation = `float 4s ease-in-out ${i * 0.5}s infinite`;
-  });
 </script>
 </body>
 </html>
