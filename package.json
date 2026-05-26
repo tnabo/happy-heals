@@ -1,0 +1,9 @@
+{
+  "name": "happy-heals",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Happy Heals — designer bandages for kids",
+  "dependencies": {
+    "stripe": "^17.0.0"
+  }
+}

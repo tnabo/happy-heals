@@ -667,6 +667,27 @@
     padding: 8px 12px;
     border: 2px solid var(--ink);
   }
+  .product-add {
+    margin-top: 12px;
+    width: 100%;
+    background: var(--ink);
+    color: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all .15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .product-add:hover { background: var(--bubble); transform: translateY(-2px); }
+  .product-add:active { transform: translateY(1px); }
 
   /* ===== FOOTER ===== */
   footer {
@@ -735,6 +756,176 @@
     }
     .reveal.in { opacity: 1; transform: translateY(0); }
   }
+
+  /* ============ CART ============ */
+  .cart-btn {
+    background: var(--sunshine);
+    color: var(--ink);
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    border: 3px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: all .15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
+  }
+  .cart-btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+  .cart-btn:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+  .cart-btn-count {
+    background: var(--bubble);
+    color: var(--paper);
+    border-radius: 999px;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    border: 2px solid var(--ink);
+  }
+  .cart-btn-count.empty { display: none; }
+  .cart-backdrop {
+    position: fixed; inset: 0; background: rgba(45, 27, 78, 0.5);
+    z-index: 998; opacity: 0; pointer-events: none;
+    transition: opacity .3s ease;
+  }
+  .cart-backdrop.open { opacity: 1; pointer-events: auto; }
+  .cart-drawer {
+    position: fixed; top: 0; right: 0;
+    width: 440px; max-width: 100vw; height: 100vh;
+    background: var(--cream); border-left: 4px solid var(--ink);
+    z-index: 999; transform: translateX(100%);
+    transition: transform .35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; flex-direction: column;
+  }
+  .cart-drawer.open { transform: translateX(0); }
+  .cart-header {
+    padding: 24px 28px; border-bottom: 3px solid var(--ink);
+    background: var(--paper);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cart-header h2 {
+    font-family: 'Bowlby One', cursive; font-size: 28px;
+    color: var(--ink); letter-spacing: 0.5px;
+  }
+  .cart-close {
+    background: var(--ink); color: var(--paper);
+    border: none; width: 40px; height: 40px;
+    border-radius: 50%; font-size: 22px; cursor: pointer;
+    font-weight: 700; transition: transform .15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cart-close:hover { transform: rotate(90deg); }
+  .cart-body { flex: 1; overflow-y: auto; padding: 20px 28px; }
+  .cart-empty { text-align: center; padding: 60px 20px; }
+  .cart-empty-emoji {
+    font-size: 80px; margin-bottom: 16px;
+    animation: wiggle 3s ease-in-out infinite;
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+  }
+  .cart-empty h3 { font-family: 'Bowlby One', cursive; font-size: 24px; margin-bottom: 12px; }
+  .cart-empty p { font-size: 16px; margin-bottom: 24px; opacity: 0.7; }
+  .cart-item {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: 16px; padding: 16px 0;
+    border-bottom: 2px dashed rgba(45,27,78,0.2);
+    align-items: center;
+  }
+  .cart-item:last-child { border-bottom: none; }
+  .cart-item-img {
+    width: 80px; height: 80px; border-radius: 14px;
+    border: 3px solid var(--ink); background: var(--paper); overflow: hidden;
+  }
+  .cart-item-img img { width: 100%; height: 100%; object-fit: contain; padding: 4px; display: block; }
+  .cart-item-info { min-width: 0; }
+  .cart-item-name {
+    font-family: 'Bowlby One', cursive; font-size: 17px;
+    line-height: 1.1; margin-bottom: 4px;
+  }
+  .cart-item-variant { font-size: 13px; opacity: 0.7; margin-bottom: 8px; }
+  .cart-item-controls { display: flex; align-items: center; gap: 8px; }
+  .cart-qty {
+    display: inline-flex; align-items: center;
+    background: var(--paper); border: 2px solid var(--ink);
+    border-radius: 999px; overflow: hidden;
+  }
+  .cart-qty button {
+    background: transparent; border: none;
+    width: 28px; height: 28px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    color: var(--ink); font-family: 'Bowlby One', cursive; line-height: 1;
+  }
+  .cart-qty button:hover { background: var(--cream); }
+  .cart-qty span {
+    font-family: 'Bowlby One', cursive; font-size: 14px;
+    min-width: 24px; text-align: center;
+  }
+  .cart-item-remove {
+    background: transparent; border: none;
+    color: rgba(45,27,78,0.5); cursor: pointer;
+    font-size: 12px; text-decoration: underline;
+    font-family: 'Fredoka', sans-serif; font-weight: 500;
+    padding: 0; margin-top: 4px;
+  }
+  .cart-item-remove:hover { color: var(--bubble); }
+  .cart-item-price {
+    font-family: 'Bowlby One', cursive; font-size: 18px;
+    text-align: right; white-space: nowrap;
+  }
+  .cart-footer {
+    background: var(--paper); border-top: 3px solid var(--ink);
+    padding: 24px 28px;
+  }
+  .cart-subtotal {
+    display: flex; justify-content: space-between;
+    align-items: baseline; margin-bottom: 8px;
+  }
+  .cart-subtotal-label { font-family: 'Bowlby One', cursive; font-size: 18px; }
+  .cart-subtotal-value { font-family: 'Bowlby One', cursive; font-size: 26px; color: var(--bubble); }
+  .cart-note { font-size: 13px; opacity: 0.6; margin-bottom: 16px; }
+  .cart-checkout {
+    width: 100%; background: var(--bubble); color: var(--paper);
+    border: 4px solid var(--ink); border-radius: 999px;
+    padding: 16px; font-family: 'Fredoka', sans-serif;
+    font-weight: 700; font-size: 18px; text-transform: uppercase;
+    cursor: pointer; box-shadow: 5px 5px 0 var(--ink);
+    transition: all .15s;
+  }
+  .cart-checkout:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--ink); }
+  .cart-checkout:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--ink); }
+  .cart-checkout:disabled {
+    opacity: 0.6; cursor: not-allowed;
+    transform: none !important; box-shadow: 5px 5px 0 var(--ink) !important;
+  }
+  .cart-toast {
+    position: fixed; bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--mint); color: var(--ink);
+    border: 3px solid var(--ink); border-radius: 999px;
+    padding: 14px 28px; font-family: 'Fredoka', sans-serif;
+    font-weight: 700; font-size: 16px;
+    box-shadow: 5px 5px 0 var(--ink);
+    z-index: 1000; opacity: 0;
+    transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity .25s;
+  }
+  .cart-toast.show {
+    transform: translateX(-50%) translateY(0); opacity: 1;
+  }
+  @media (max-width: 500px) {
+    .cart-drawer { width: 100vw; border-left: none; }
+    .cart-header, .cart-body, .cart-footer { padding-left: 20px; padding-right: 20px; }
+  }
 </style>
 </head>
 <body>
@@ -748,7 +939,9 @@
     <li><a href="index.html#reviews">Reviews</a></li>
     <li><a href="index.html#grownups">For Grown-ups</a></li>
   </ul>
-  <a href="#" class="nav-cta">Cart (0) 🛒</a>
+  <button class="cart-btn" data-cart-open>
+    🛒 Cart <span class="cart-btn-count empty" data-cart-count>0</span>
+  </button>
 </nav>
 
 <!-- BREADCRUMBS -->
@@ -805,10 +998,10 @@
         <span class="current-label" id="sizeLabel">50 count</span>
       </div>
       <div class="design-options" id="sizeChips">
-        <div class="design-chip" data-label="25 count" data-price="5.99">25 ct</div>
-        <div class="design-chip active" data-label="50 count" data-price="8.99">50 ct</div>
-        <div class="design-chip" data-label="100 count" data-price="14.99">100 ct</div>
-        <div class="design-chip" data-label="Family pack (250)" data-price="32.99">Family Pack</div>
+        <div class="design-chip" data-sku="dino-25" data-label="25 count" data-price="5.99">25 ct</div>
+        <div class="design-chip active" data-sku="dino-50" data-label="50 count" data-price="8.99">50 ct</div>
+        <div class="design-chip" data-sku="dino-100" data-label="100 count" data-price="14.99">100 ct</div>
+        <div class="design-chip" data-sku="dino-family" data-label="Family pack (250)" data-price="32.99">Family Pack</div>
       </div>
     </div>
 
@@ -981,21 +1174,24 @@
   <div class="related-inner">
     <h2 class="section-title reveal">More Bandaid <span class="pop">Adventures!</span></h2>
     <div class="related-grid">
-      <a href="#" class="product-card reveal">
+      <div class="product-card reveal">
         <div class="product-art"><img src="images/outer-space.jpg" alt="Outer Space"></div>
         <div class="product-name">Outer Space</div>
         <div class="product-meta"><span>24 ct</span><span>$7.99</span></div>
-      </a>
-      <a href="#" class="product-card reveal">
+        <button class="product-add" data-add-to-cart="space-24">🛒 Add to cart</button>
+      </div>
+      <div class="product-card reveal">
         <div class="product-art"><img src="images/race-day.jpg" alt="Race Day"></div>
         <div class="product-name">Race Day</div>
         <div class="product-meta"><span>24 ct</span><span>$7.99</span></div>
-      </a>
-      <a href="#" class="product-card reveal">
+        <button class="product-add" data-add-to-cart="race-24">🛒 Add to cart</button>
+      </div>
+      <div class="product-card reveal">
         <div class="product-art"><img src="images/first-responder.jpg" alt="1st Responders"></div>
         <div class="product-name">1st Responders</div>
         <div class="product-meta"><span>50 ct</span><span>$9.99</span></div>
-      </a>
+        <button class="product-add" data-add-to-cart="responder-50">🛒 Add to cart</button>
+      </div>
     </div>
   </div>
 </section>
@@ -1073,18 +1269,13 @@
   document.getElementById('qtyPlus').addEventListener('click', () => { qty++; qtyVal.textContent = qty; });
   document.getElementById('qtyMinus').addEventListener('click', () => { if (qty > 1) { qty--; qtyVal.textContent = qty; } });
 
-  // Add to cart feedback
-  document.getElementById('addBtn').addEventListener('click', (e) => {
-    const btn = e.currentTarget;
-    const orig = btn.innerHTML;
-    btn.innerHTML = '✓ Added! 🎉';
-    btn.style.background = 'var(--mint)';
-    btn.style.color = 'var(--ink)';
-    setTimeout(() => {
-      btn.innerHTML = orig;
-      btn.style.background = '';
-      btn.style.color = '';
-    }, 1800);
+  // Add to cart — REAL integration with cart engine
+  document.getElementById('addBtn').addEventListener('click', () => {
+    const activeChip = document.querySelector('#sizeChips .design-chip.active');
+    const sku = activeChip ? activeChip.dataset.sku : 'dino-50';
+    const quantity = parseInt(document.getElementById('qtyVal').textContent, 10) || 1;
+    window.HappyHealsCart.addToCart(sku, quantity);
+    window.HappyHealsCart.openDrawer();
   });
 
   // Reveal
@@ -1092,6 +1283,180 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="cart-backdrop" data-cart-backdrop></div>
+<aside class="cart-drawer" data-cart-drawer aria-hidden="true">
+  <div class="cart-header">
+    <h2>Your Cart 🛒</h2>
+    <button class="cart-close" data-cart-close aria-label="Close cart">×</button>
+  </div>
+  <div class="cart-body" data-cart-body></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span class="cart-subtotal-label">Subtotal</span>
+      <span class="cart-subtotal-value" data-cart-subtotal>$0.00</span>
+    </div>
+    <p class="cart-note" data-cart-shipping-note>Shipping & taxes calculated at checkout</p>
+    <button class="cart-checkout" data-cart-checkout>Checkout 💳</button>
+  </div>
+</aside>
+<div class="cart-toast" data-cart-toast>Added to cart! 🎉</div>
+
+<script>
+  /* ============ HAPPY HEALS CART ============ */
+  (function () {
+    const STORAGE_KEY = 'happyHealsCart_v1';
+    const CATALOG = {
+      'dino-25':     { name: 'Dino Bandages',     variant: '25 ct',  price: 5.99,  img: 'images/dino.jpg' },
+      'dino-50':     { name: 'Dino Bandages',     variant: '50 ct',  price: 8.99,  img: 'images/dino.jpg' },
+      'dino-100':    { name: 'Dino Bandages',     variant: '100 ct', price: 14.99, img: 'images/dino.jpg' },
+      'dino-family': { name: 'Dino Bandages',     variant: 'Family pack (250)', price: 32.99, img: 'images/dino.jpg' },
+      'space-24':    { name: 'Outer Space',       variant: '24 ct',  price: 7.99,  img: 'images/outer-space.jpg' },
+      'race-24':     { name: 'Race Day',          variant: '24 ct',  price: 7.99,  img: 'images/race-day.jpg' },
+      'responder-50':{ name: '1st Responders',    variant: '50 ct',  price: 9.99,  img: 'images/first-responder.jpg' },
+      'adventure-24':{ name: 'Adventure',         variant: '24 ct',  price: 7.99,  img: 'images/adventure.jpg' },
+      'miracles-50': { name: 'Little Miracles',   variant: '50 ct',  price: 9.99,  img: 'images/little-miracles.jpg' },
+    };
+    let cart = loadCart();
+    function loadCart() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch (e) { return {}; } }
+    function saveCart() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch (e) {} }
+
+    const drawer = document.querySelector('[data-cart-drawer]');
+    const backdrop = document.querySelector('[data-cart-backdrop]');
+    const body = document.querySelector('[data-cart-body]');
+    const countEl = document.querySelector('[data-cart-count]');
+    const subtotalEl = document.querySelector('[data-cart-subtotal]');
+    const checkoutBtn = document.querySelector('[data-cart-checkout]');
+    const toast = document.querySelector('[data-cart-toast]');
+
+    function addToCart(sku, qty = 1) {
+      if (!CATALOG[sku]) { console.warn('Unknown SKU:', sku); return; }
+      cart[sku] = (cart[sku] || 0) + qty;
+      saveCart(); render();
+      showToast(`Added ${CATALOG[sku].name}! 🎉`);
+    }
+    function setQty(sku, qty) {
+      if (qty <= 0) delete cart[sku]; else cart[sku] = qty;
+      saveCart(); render();
+    }
+    function removeFromCart(sku) { delete cart[sku]; saveCart(); render(); }
+
+    function render() {
+      const skus = Object.keys(cart);
+      const totalItems = skus.reduce((a, sku) => a + cart[sku], 0);
+      const subtotal = skus.reduce((a, sku) => a + (CATALOG[sku].price * cart[sku]), 0);
+      countEl.textContent = totalItems;
+      countEl.classList.toggle('empty', totalItems === 0);
+      subtotalEl.textContent = '$' + subtotal.toFixed(2);
+      checkoutBtn.disabled = totalItems === 0;
+      const noteEl = document.querySelector('[data-cart-shipping-note]');
+      if (noteEl) {
+        if (totalItems === 0) {
+          noteEl.textContent = 'Shipping & taxes calculated at checkout';
+          noteEl.style.color = '';
+        } else if (subtotal >= 25) {
+          noteEl.innerHTML = '🎉 You unlocked <strong>FREE shipping!</strong>';
+          noteEl.style.color = 'var(--bubble)';
+        } else {
+          const remaining = (25 - subtotal).toFixed(2);
+          noteEl.innerHTML = `Add <strong>$${remaining}</strong> more for FREE shipping 🚚`;
+          noteEl.style.color = '';
+        }
+      }
+      if (skus.length === 0) {
+        body.innerHTML = `<div class="cart-empty"><div class="cart-empty-emoji">🩹</div><h3>Your cart is empty!</h3><p>Add some boo-boo heroes to get started.</p></div>`;
+        return;
+      }
+      body.innerHTML = skus.map(sku => {
+        const p = CATALOG[sku]; const q = cart[sku];
+        return `<div class="cart-item">
+          <div class="cart-item-img"><img src="${p.img}" alt="${p.name}"></div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${p.name}</div>
+            <div class="cart-item-variant">${p.variant} · $${p.price.toFixed(2)}</div>
+            <div class="cart-item-controls">
+              <div class="cart-qty">
+                <button data-cart-decrease="${sku}">−</button><span>${q}</span><button data-cart-increase="${sku}">+</button>
+              </div>
+              <button class="cart-item-remove" data-cart-remove="${sku}">Remove</button>
+            </div>
+          </div>
+          <div class="cart-item-price">$${(p.price * q).toFixed(2)}</div>
+        </div>`;
+      }).join('');
+    }
+
+    function openDrawer() { drawer.classList.add('open'); backdrop.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeDrawer() { drawer.classList.remove('open'); backdrop.classList.remove('open'); document.body.style.overflow = ''; }
+
+    let toastTimer;
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    document.addEventListener('click', (e) => {
+      const t = e.target.closest('[data-cart-open], [data-cart-close], [data-cart-backdrop], [data-add-to-cart], [data-cart-increase], [data-cart-decrease], [data-cart-remove], [data-cart-checkout]');
+      if (!t) return;
+      if (t.matches('[data-cart-open]')) { openDrawer(); return; }
+      if (t.matches('[data-cart-close], [data-cart-backdrop]')) { closeDrawer(); return; }
+      if (t.matches('[data-add-to-cart]')) {
+        e.preventDefault();
+        addToCart(t.dataset.addToCart, parseInt(t.dataset.qty || '1', 10));
+        return;
+      }
+      if (t.matches('[data-cart-increase]')) { setQty(t.dataset.cartIncrease, (cart[t.dataset.cartIncrease] || 0) + 1); return; }
+      if (t.matches('[data-cart-decrease]')) { setQty(t.dataset.cartDecrease, (cart[t.dataset.cartDecrease] || 0) - 1); return; }
+      if (t.matches('[data-cart-remove]')) { removeFromCart(t.dataset.cartRemove); return; }
+      if (t.matches('[data-cart-checkout]')) { e.preventDefault(); startCheckout(t); return; }
+    });
+
+    async function startCheckout(btn) {
+      const skus = Object.keys(cart);
+      if (skus.length === 0) return;
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = 'Loading… ⏳';
+      try {
+        const items = skus.map(sku => ({ sku, quantity: cart[sku] }));
+        const res = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items, origin: window.location.origin }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.url) throw new Error(data.error || 'Checkout failed');
+        window.location.href = data.url;
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        showToast('Checkout error — please try again. ⚠️');
+      }
+    }
+
+    function handleCheckoutReturn() {
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get('checkout');
+      if (status === 'success') {
+        cart = {}; saveCart(); render();
+        setTimeout(() => showToast('Order placed! Thanks so much! 🎉'), 400);
+        window.history.replaceState({}, '', window.location.pathname);
+      } else if (status === 'cancelled') {
+        setTimeout(() => showToast('Checkout cancelled — your cart is saved.'), 400);
+        window.history.replaceState({}, '', window.location.pathname);
+      }
+    }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer(); });
+
+    render();
+    handleCheckoutReturn();
+    window.HappyHealsCart = { addToCart, setQty, removeFromCart, openDrawer, closeDrawer, getCart: () => ({...cart}) };
+  })();
 </script>
 </body>
 </html>
